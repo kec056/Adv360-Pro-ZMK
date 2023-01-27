@@ -31,6 +31,24 @@
         flavor = "tap-preferred";
         bindings = <&kp>, <&kp>;
     };
+
+    // tap: copy | double tap: cut
+    cocut: copy_paste  {
+        compatible = "zmk,behavior-tap-dance";
+        label = "CPY_PST";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&kp LC(C)>, <&kp LC(X)>;
+    };
+
+    // tap: paste | double tap: paste no formatting
+    pastes: pastes  {
+        compatible = "zmk,behavior-tap-dance";
+        label = "CPY_PST";
+        #binding-cells = <0>;
+        tapping-term-ms = <200>;
+        bindings = <&kp LC(V)>, <&kp LA(LC(LS(V)))>;
+    };
   };
 
     keymap {
@@ -40,10 +58,10 @@
         default_layer {
             bindings = <
  &kp EQUAL     &kp N1    &kp N2    &kp N3     &kp N4  &kp N5              &tog 1                                                                    &mo 3  &kp N6  &kp N7     &kp N8    &kp N9    &kp N0  &kp MINUS
-   &kp TAB      &kp Q     &kp W     &kp E      &kp R   &kp T               &none                                                                    &none   &kp Y   &kp U      &kp I     &kp O     &kp P   &kp BSLH
-   &kp ESC      &kp A     &kp S     &kp D      &kp F   &kp G               &none   &kp LCTRL    &kp LALT                   &kp LGUI  &kp RCTRL      &none   &kp H   &kp J      &kp K     &kp L  &kp SEMI    &kp SQT
+   &kp TAB      &kp Q     &kp W     &kp E      &kp R   &kp T               &pastes                                                                    &none   &kp Y   &kp U      &kp I     &kp O     &kp P   &kp BSLH
+   &kp ESC      &kp A     &kp S     &kp D      &kp F   &kp G               &cocut   &kp LCTRL    &kp LALT                   &kp LGUI  &kp RCTRL      &none   &kp H   &kp J      &kp K     &kp L  &kp SEMI    &kp SQT
  &kp LSHFT      &kp Z     &kp X     &kp C      &kp V   &kp B               &none       &none  &kp DELETE   &none   &none  &kp PG_UP      &none      &none   &kp N   &kp M  &kp COMMA   &kp DOT  &kp FSLH  &kp RSHFT
-     &mo 2  &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT                    &mt LA(BSPC) BSPC  &kp LSHIFT     &kp END                  &kp PG_DN  &kp ENTER  &kp SPACE          &kp UP   &kp DOWN  &kp LBKT  &kp RBKT      &mo 2
+     &mo 2  &kp GRAVE  &kp CAPS  &mt LA(LEFT) LEFT  &mt LA(RIGHT) RIGHT                    &mt LA(BSPC) BSPC  &kp LSHIFT     &kp END                  &kp PG_DN  &kp ENTER  &kp SPACE          &kp UP   &kp DOWN  &kp LBKT  &kp RBKT      &mo 2
             >;
         };
 
